@@ -1,6 +1,5 @@
 // Interacciones de la interfaz: menú móvil y visor de la galería.
-// El envío y la carga de comentarios se integra en un módulo aparte
-// a partir del código trabajado con la IA (ver docs/preguntas-ia.md).
+// Los comentarios viven en su propio módulo (comentarios.js).
 
 const botonMenu = document.querySelector(".menu-boton");
 const menu = document.querySelector("#menu");

@@ -468,6 +468,28 @@ a {
   border-color: var(--error);
 }
 
+.campo__error {
+  margin: 0;
+  color: var(--error);
+  font-size: 0.9rem;
+}
+
+.campo__error:empty {
+  display: none;
+}
+
+.campo__ayuda {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.campo__contador {
+  margin: 0 0 0 auto;
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+}
+
 .formulario .boton {
   justify-self: start;
 }
@@ -498,6 +520,44 @@ a {
   padding: 1rem 1.25rem;
   border: 1px solid var(--borde);
   border-radius: var(--radio);
+}
+
+.comentario--propio {
+  border-color: var(--turquesa);
+  border-left-width: 4px;
+}
+
+.comentario__cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.comentario__estilo {
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  background: var(--espuma);
+  color: var(--azul-profundo);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.comentario__etiqueta {
+  color: #0f7a64;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.comentario__texto {
+  margin-bottom: 0.4rem;
+  overflow-wrap: anywhere; /* una palabra muy larga no rompe el diseño en móvil */
+}
+
+.comentario__fecha {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
 }
 
 .comentarios__vacio {

@@ -1,3 +1,7 @@
 node_modules/
 .env
 .DS_Store
+
+# Comentarios reales: se generan al usar la página
+data/*.json
+data/*.tmp

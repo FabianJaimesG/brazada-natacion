@@ -1,13 +1,12 @@
-// Servidor de Brazada: entrega la página estática de /public.
-// Las rutas de comentarios se agregan a partir de la conversación con la IA.
-const express = require("express");
-const path = require("path");
+// Punto de entrada: carga los comentarios guardados y levanta el servidor.
+import { fileURLToPath } from "node:url";
+import { crearApp } from "./app.js";
+import { crearAlmacen } from "./lib/almacen.js";
 
-const app = express();
 const PORT = process.env.PORT || 3000;
+const ARCHIVO = process.env.ARCHIVO_COMENTARIOS || fileURLToPath(new URL("./data/comentarios.json", import.meta.url));
 
-app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+const app = crearApp(await crearAlmacen(ARCHIVO));
 
 // Replit expone el servicio si escucha en 0.0.0.0
 app.listen(PORT, "0.0.0.0", () => {

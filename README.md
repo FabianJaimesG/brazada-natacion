@@ -6,15 +6,32 @@ Página web personal sobre la natación, construida para el **Proyecto de Aplica
 
 - **Introducción:** por qué la natación y los cuatro estilos de competencia.
 - **Galería:** seis imágenes con visor ampliado (`<dialog>`).
-- **Comentarios:** formulario para dejar un comentario, que se muestra en la misma página.
-- **Backend:** servidor Node.js con Express que recibe y entrega los comentarios.
+- **Comentarios:** formulario validado que publica el comentario y lo muestra en la misma página sin recargarla.
+- **Backend:** API en Node.js con Express que guarda los comentarios en un archivo JSON.
+
+## Cómo se guardan los comentarios
+
+| Dónde | Qué guarda | Para qué |
+|---|---|---|
+| `data/comentarios.json` (servidor) | Todos los comentarios | Que todos los visitantes los vean y que sobrevivan a un reinicio |
+| `localStorage` (navegador) | Solo los comentarios que publicó ese visitante | Marcarlos como «Tu comentario» y mostrarlos aunque el servidor haya perdido el archivo |
+
+### API
+
+| Método | Ruta | Respuesta |
+|---|---|---|
+| `GET` | `/api/comentarios` | `200` con la lista, del más reciente al más antiguo |
+| `POST` | `/api/comentarios` | `201` con el comentario creado, o `400` con `{ errores: { campo: mensaje } }` |
+
+El cuerpo del `POST` es `{ "nombre", "estilo", "comentario" }`. Las reglas están en `public/js/validacion.js`, y las usan tanto el navegador como el servidor.
 
 ## Tecnologías
 
 - HTML5 semántico y accesible.
 - CSS3 *mobile first*: estilos base para móvil y `min-width` en 40em (tableta) y 64em (escritorio).
-- JavaScript sin librerías.
-- Node.js 20 + Express 5.
+- JavaScript sin librerías (ES Modules, `fetch`, `localStorage`, `<dialog>`).
+- Node.js 20 + Express 5, con persistencia en un archivo JSON.
+- Pruebas con `node:test`.
 - Replit para el despliegue.
 
 ## Ejecutarlo en local
@@ -23,17 +40,26 @@ Página web personal sobre la natación, construida para el **Proyecto de Aplica
 npm install
 npm start        # http://localhost:3000
 npm run dev      # reinicia el servidor al guardar
+npm test         # pruebas del API
 ```
+
+> En Replit, el archivo JSON se conserva mientras el proyecto vive en el espacio de trabajo. En una app publicada (Deployments) el disco no es permanente: al volver a publicar se empieza de cero. Por eso cada visitante conserva sus propios comentarios en `localStorage`.
 
 ## Estructura
 
 ```
-server.js            servidor Express
+server.js            arranque: carga el JSON y escucha en el puerto
+app.js               aplicación Express y rutas del API
+lib/almacen.js       lectura y escritura de data/comentarios.json
+data/                comentarios guardados (fuera de git)
 public/
   index.html         página única
   css/styles.css     estilos mobile first
   js/main.js         menú móvil y visor de la galería
+  js/comentarios.js  envío, listado y localStorage
+  js/validacion.js   reglas compartidas por navegador y servidor
   img/               imágenes de la galería
+tests/api.test.js    pruebas del API
 docs/
   preguntas-ia.md    guion de la conversación con la IA
 ```
