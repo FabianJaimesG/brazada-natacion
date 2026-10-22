@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brazada · Mi pasión por la natación</title>
+  <meta name="description" content="Página personal sobre la natación: los cuatro estilos, una galería de imágenes y un espacio para dejar comentarios.">
+  <meta name="theme-color" content="#0b4f6c">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <div class="cabecera__barra contenedor">
+      <a class="marca" href="#inicio" aria-label="Brazada, ir al inicio">
+        <svg class="marca__icono" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M2 20c3 0 3-2 6-2s3 2 6 2 3-2 6-2 3 2 6 2 3-2 4-2M2 26c3 0 3-2 6-2s3 2 6 2 3-2 6-2 3 2 6 2 3-2 4-2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+          <circle cx="20" cy="8" r="3.2" fill="currentColor"/>
+        </svg>
+        Brazada
+      </a>
+      <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="menu-boton__linea" aria-hidden="true"></span>
+        <span class="visualmente-oculto">Abrir menú</span>
+      </button>
+      <nav class="menu" id="menu" aria-label="Principal">
+        <ul class="menu__lista">
+          <li><a href="#introduccion">El tema</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#comentarios">Comentarios</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="portada" id="inicio" aria-labelledby="portada-titulo">
+      <div class="portada__contenido contenedor">
+        <p class="portada__antetitulo">Hobby · Deporte · Disciplina</p>
+        <h1 id="portada-titulo">La natación, una brazada a la vez</h1>
+        <p class="portada__texto">Un espacio para contar por qué me apasiona nadar, mostrar lo que hace especial a este deporte y leer lo que piensan quienes también lo viven.</p>
+        <a class="boton" href="#comentarios">Deja tu comentario</a>
+      </div>
+    </section>
+
+    <section class="seccion" id="introduccion" aria-labelledby="intro-titulo">
+      <div class="contenedor">
+        <h2 id="intro-titulo">¿Por qué la natación?</h2>
+        <p class="seccion__entrada">Nadar es uno de los pocos deportes que trabaja todo el cuerpo sin castigar las articulaciones. En el agua el ruido se apaga: solo quedan la respiración, el ritmo de los brazos y la línea negra del fondo de la piscina. Por eso para mí es entrenamiento y descanso al mismo tiempo.</p>
+
+        <ul class="estilos" aria-label="Los cuatro estilos de la natación">
+          <li class="estilo">
+            <h3 class="estilo__nombre">Crol</h3>
+            <p>El estilo libre y el más rápido. Brazada alterna, patada continua y respiración lateral.</p>
+          </li>
+          <li class="estilo">
+            <h3 class="estilo__nombre">Espalda</h3>
+            <p>Se nada boca arriba, con la cara fuera del agua. Exige mantener el cuerpo recto y la cadera alta.</p>
+          </li>
+          <li class="estilo">
+            <h3 class="estilo__nombre">Pecho</h3>
+            <p>El más técnico: brazos y piernas se mueven a la vez y la clave está en el deslizamiento.</p>
+          </li>
+          <li class="estilo">
+            <h3 class="estilo__nombre">Mariposa</h3>
+            <p>El más exigente: brazos simultáneos y patada ondulante, como un delfín.</p>
+          </li>
+        </ul>
+
+        <dl class="datos">
+          <div class="datos__item">
+            <dt>Piscina olímpica</dt>
+            <dd>50 m</dd>
+          </div>
+          <div class="datos__item">
+            <dt>Estilos de competencia</dt>
+            <dd>4</dd>
+          </div>
+          <div class="datos__item">
+            <dt>Músculos que trabaja</dt>
+            <dd>Todo el cuerpo</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="seccion seccion--clara" id="galeria" aria-labelledby="galeria-titulo">
+      <div class="contenedor">
+        <h2 id="galeria-titulo">Galería</h2>
+        <p class="seccion__entrada">Momentos que muestran la variedad de la natación: de la piscina olímpica al mar abierto. Toca una imagen para verla en grande.</p>
+
+        <ul class="galeria">
+          <li class="galeria__item">
+            <figure>
+              <button class="galeria__boton" type="button" data-ampliar>
+                <img src="img/crol.jpg" width="1280" height="853" loading="lazy" alt="Vista aérea de una final de crol con varios nadadores en sus carriles">
+              </button>
+              <figcaption>Crol: la final de 400 m vista desde arriba.</figcaption>
+            </figure>
+          </li>
+          <li class="galeria__item">
+            <figure>
+              <button class="galeria__boton" type="button" data-ampliar>
+                <img src="img/mariposa.jpg" width="1280" height="720" loading="lazy" alt="Nadador de frente en plena brazada de mariposa, con los brazos abiertos sobre el agua">
+              </button>
+              <figcaption>Mariposa: potencia y coordinación.</figcaption>
+            </figure>
+          </li>
+          <li class="galeria__item">
+            <figure>
+              <button class="galeria__boton" type="button" data-ampliar>
+                <img src="img/espalda.jpg" width="1280" height="851" loading="lazy" alt="Tres nadadores compiten en estilo espalda en carriles separados por corcheras azules">
+              </button>
+              <figcaption>Espalda: el único estilo que se nada mirando al cielo.</figcaption>
+            </figure>
+          </li>
+          <li class="galeria__item">
+            <figure>
+              <button class="galeria__boton" type="button" data-ampliar>
+                <img src="img/entrenamiento.jpg" width="1280" height="757" loading="lazy" alt="Dos jóvenes nadan espalda en un entrenamiento, separados por una corchera">
+              </button>
+              <figcaption>Entrenamiento: la técnica se construye largo a largo.</figcaption>
+            </figure>
+          </li>
+          <li class="galeria__item">
+            <figure>
+              <button class="galeria__boton" type="button" data-ampliar>
+                <img src="img/piscina.jpg" width="1280" height="960" loading="lazy" alt="Piscina cubierta de competencia con carriles, plataformas de salida y banderas colgando del techo">
+              </button>
+              <figcaption>La piscina: el escenario de cada sesión.</figcaption>
+            </figure>
+          </li>
+          <li class="galeria__item">
+            <figure>
+              <button class="galeria__boton" type="button" data-ampliar>
+                <img src="img/aguas-abiertas.jpg" width="1280" height="960" loading="lazy" alt="Cientos de triatletas entran al mar desde una playa rodeada de acantilados">
+              </button>
+              <figcaption>Aguas abiertas: la salida de un triatlón en el mar.</figcaption>
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="seccion" id="comentarios" aria-labelledby="comentarios-titulo">
+      <div class="contenedor contenedor--angosto">
+        <h2 id="comentarios-titulo">Comentarios</h2>
+        <p class="seccion__entrada">¿Nadas, quieres empezar o tienes un consejo para mejorar la técnica? Déjalo aquí.</p>
+
+        <form class="formulario" id="formulario-comentario" novalidate>
+          <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="name" maxlength="40" required>
+          </div>
+          <div class="campo">
+            <label for="estilo">Estilo favorito</label>
+            <select id="estilo" name="estilo">
+              <option value="">Prefiero no decirlo</option>
+              <option>Crol</option>
+              <option>Espalda</option>
+              <option>Pecho</option>
+              <option>Mariposa</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="comentario">Comentario</label>
+            <textarea id="comentario" name="comentario" rows="4" maxlength="500" required></textarea>
+          </div>
+          <button class="boton" type="submit">Publicar comentario</button>
+          <p class="formulario__estado" id="estado-formulario" role="status" aria-live="polite"></p>
+        </form>
+
+        <h3 class="comentarios__titulo">Lo que dicen otros nadadores</h3>
+        <ul class="comentarios" id="lista-comentarios" aria-live="polite">
+          <li class="comentarios__vacio">Todavía no hay comentarios. ¡Sé el primero!</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <p>Brazada · Proyecto de Aplicación de Desarrollo Web · Fabián Jaimes, 2026</p>
+      <details class="creditos">
+        <summary>Créditos de las imágenes</summary>
+        <ul>
+          <li>Crol: <a href="https://commons.wikimedia.org/wiki/File:PG2024-swimming-men-400m-freestyle-S13-heat1-02.jpg">Eponimm</a>, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a></li>
+          <li>Mariposa: <a href="https://commons.wikimedia.org/wiki/File:40._Schwimmzonen-_und_Mastersmeeting_Enns_2017_100m_Butterfly-9318.jpg">Isiwal</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
+          <li>Espalda: <a href="https://commons.wikimedia.org/wiki/File:Amateur_Swimming_Backstroke.jpg">Yanjipy</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
+          <li>Entrenamiento: <a href="https://commons.wikimedia.org/wiki/File:Swimming_kids.jpg">Terese Toennies</a>, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a></li>
+          <li>Piscina: <a href="https://commons.wikimedia.org/wiki/File:King_County_Aquatic_Center_competition_pool_and_timing_system_-_23_November_2022.jpg">Tanis Coralee Leonhardi</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
+          <li>Aguas abiertas: <a href="https://commons.wikimedia.org/wiki/File:Swim_Start_at_Ironman_Wales_2011.jpg">David Dixon</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a></li>
+        </ul>
+      </details>
+    </div>
+  </footer>
+
+  <dialog class="visor" id="visor" aria-label="Imagen ampliada">
+    <button class="visor__cerrar" type="button" data-cerrar aria-label="Cerrar">×</button>
+    <img class="visor__imagen" alt="">
+    <p class="visor__pie"></p>
+  </dialog>
+</body>
+</html>
