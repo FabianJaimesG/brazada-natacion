@@ -12,7 +12,8 @@ let servidor, base, carpeta, archivo;
 before(async () => {
   carpeta = await mkdtemp(join(tmpdir(), "brazada-"));
   archivo = join(carpeta, "comentarios.json");
-  const app = crearApp(await crearAlmacen(archivo));
+  // Límite holgado: aquí se prueba el API, el límite tiene su propia prueba
+  const app = crearApp(await crearAlmacen(archivo), { limite: { max: 50 } });
   servidor = app.listen(0);
   base = `http://localhost:${servidor.address().port}/api/comentarios`;
 });
@@ -70,4 +71,31 @@ test("guarda el HTML como texto, sin ejecutarlo", async () => {
 test("conserva los comentarios al reiniciar el servidor", async () => {
   const otraVez = await crearAlmacen(archivo);
   assert.equal(otraVez.listar().length, 3); // Ana, Luis y Eva
+});
+
+test("envía la Content-Security-Policy", async () => {
+  const respuesta = await fetch(base.replace("/api/comentarios", "/"));
+  const csp = respuesta.headers.get("content-security-policy");
+  assert.match(csp, /script-src 'self'/);
+  assert.equal(respuesta.headers.get("x-content-type-options"), "nosniff");
+});
+
+test("responde 429 al pasar el límite de envíos", async () => {
+  const otraCarpeta = await mkdtemp(join(tmpdir(), "brazada-limite-"));
+  const app = crearApp(await crearAlmacen(join(otraCarpeta, "c.json")), { limite: { max: 2, ventanaMs: 60_000 } });
+  const otro = app.listen(0);
+  const url = `http://localhost:${otro.address().port}/api/comentarios`;
+  const datos = JSON.stringify({ nombre: "Spam", comentario: "Mensaje repetido" });
+  const post = () => fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: datos });
+
+  try {
+    assert.equal((await post()).status, 201);
+    assert.equal((await post()).status, 201);
+    const bloqueado = await post();
+    assert.equal(bloqueado.status, 429);
+    assert.ok(Number(bloqueado.headers.get("retry-after")) > 0);
+  } finally {
+    otro.close();
+    await rm(otraCarpeta, { recursive: true, force: true });
+  }
 });

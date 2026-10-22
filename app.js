@@ -2,13 +2,18 @@
 import express from "express";
 import { randomUUID } from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { cabecerasSeguras, limitarEnvios } from "./lib/seguridad.js";
 import { limpiar, validarComentario } from "./public/js/validacion.js";
 
 const carpetaPublica = fileURLToPath(new URL("./public", import.meta.url));
 
-export function crearApp(almacen) {
+export function crearApp(almacen, { limite } = {}) {
   const app = express();
 
+  // Replit atiende detrás de un proxy: así req.ip es la IP real del visitante
+  app.set("trust proxy", 1);
+
+  app.use(cabecerasSeguras);
   app.use(express.json({ limit: "10kb" }));
   app.use(express.static(carpetaPublica));
 
@@ -16,7 +21,7 @@ export function crearApp(almacen) {
     res.json(almacen.listar());
   });
 
-  app.post("/api/comentarios", async (req, res, next) => {
+  app.post("/api/comentarios", limitarEnvios(limite), async (req, res, next) => {
     const errores = validarComentario(req.body);
     if (Object.keys(errores).length > 0) {
       return res.status(400).json({ errores });

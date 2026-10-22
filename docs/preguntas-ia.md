@@ -52,6 +52,12 @@ El enunciado pide hablar con una IA para desarrollar el backend en Node.js y ane
 **Lo esperable:** un módulo compartido (ES Modules), respuestas `400` con el error de cada campo y pintar con `textContent` en vez de `innerHTML`.
 **En el proyecto:** `public/js/validacion.js`, importado por `app.js` y por `comentarios.js`.
 
+### 7b. Protección extra
+> ¿Cómo agrego una Content-Security-Policy en Express sin instalar librerías? ¿Y cómo limito a 5 comentarios por minuto por IP para evitar spam, teniendo en cuenta que Replit está detrás de un proxy?
+
+**Lo esperable:** un middleware que fija la cabecera `Content-Security-Policy`, un mapa de IP → envíos con respuesta `429` y `app.set("trust proxy", 1)`. Puede que la IA sugiera `helmet` y `express-rate-limit`: anotar en el anexo que se prefirió no sumar dependencias.
+**En el proyecto:** `lib/seguridad.js`.
+
 ### 8. Pruebas
 > ¿Cómo pruebo esa API con el runner de pruebas que trae Node, sin instalar librerías?
 

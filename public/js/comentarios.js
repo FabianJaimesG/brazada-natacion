@@ -161,6 +161,10 @@ formulario.addEventListener("submit", async (evento) => {
       mostrarEstado("Revisa los campos marcados.", true);
       return;
     }
+    if (respuesta.status === 429) {
+      mostrarEstado(cuerpo.mensaje, true);
+      return;
+    }
     if (!respuesta.ok) throw new Error(cuerpo.mensaje);
 
     guardarPropio(cuerpo);
